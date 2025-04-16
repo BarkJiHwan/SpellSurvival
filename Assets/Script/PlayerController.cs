@@ -6,8 +6,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private InputActionReference inputActionRef;
-    [SerializeField] private CharacterController characterController;
+    //GameObjeckt에서 TestJoyStick찾아서 FloatingJoystick이름 바꾸기
+    //[SerializeField] private FloatingJoystick joystick; //<<모바일 연동 시 활성화하기
+
+    [SerializeField] private TestJoyStick joystick;
+    private CharacterController characterController;
     public float moveSpeed;
     public float rotSpeed;
     Vector2 dir;
@@ -19,13 +22,34 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        dir = inputActionRef.action.ReadValue<Vector2>();
-        moveDir = new Vector3(dir.x, 0, dir.y);
-        characterController.Move(moveDir * moveSpeed * Time.deltaTime);        
-        if (moveDir != Vector3.zero)
+        if (joystick == null)
         {
-            Quaternion rot = Quaternion.LookRotation(moveDir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rot, rotSpeed * Time.deltaTime);
+            Debug.LogWarning("조이스틱이 할당되지 않았습니다!");
+            return;
+        }
+
+        // 조이스틱 입력값 가져오기 (Vector2)
+        Vector2 inputDir = joystick.InputVector;
+
+        // 이동 방향 계산 (XZ 평면)
+        Vector3 moveDir = new Vector3(inputDir.x, 0f, inputDir.y);
+
+        // 대각선 이동 속도 보정
+        if (moveDir.magnitude > 1f)
+            moveDir.Normalize();
+
+        // 캐릭터 이동
+        characterController.Move(moveDir * moveSpeed * Time.deltaTime);
+
+        // 캐릭터 회전
+        if (moveDir.sqrMagnitude > 0.001f)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(moveDir);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRot,
+                rotSpeed * Time.deltaTime
+            );
         }
     }
 }
