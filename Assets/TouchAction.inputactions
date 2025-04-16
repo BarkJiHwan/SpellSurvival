@@ -1,12 +1,12 @@
 {
-    "name": "Controls",
+    "name": "TouchAction",
     "maps": [
         {
-            "name": "Player",
+            "name": "Touch",
             "id": "30ea7f4e-a421-4d98-bcfb-2c54ed8855df",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "TouchPress",
                     "type": "Value",
                     "id": "974623b8-d443-4a4c-97bb-f3538c6abc9c",
                     "expectedControlType": "Vector2",
@@ -19,16 +19,28 @@
                 {
                     "name": "",
                     "id": "b3b310ed-1732-4150-baf6-801548bab1c8",
-                    "path": "<Joystick>/stick",
-                    "interactions": "",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "TouchPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "New control scheme",
+            "bindingGroup": "New control scheme",
+            "devices": [
+                {
+                    "devicePath": "<Touchscreen>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }
