@@ -10,7 +10,7 @@ public class TileManager : MonoBehaviour
     public GameObject tilePrefab;
     [Header("타일 사이즈")]
     public int tileSize = 1;
-    [Header("바닥 사이즈"), Tooltip("홀수로 설정하기 (캐릭터를 중앙에 두기 위해)"), Range(3, 11)]
+    [Header("바닥 사이즈 7이 제일 적정"), Tooltip("홀수로 설정하기 (캐릭터를 중앙에 두기 위해)"), Range(3, 11)]
     public int gridSize = 3;//홀수로 사용할것
 
     private List<Tile> tiles = new List<Tile>();
