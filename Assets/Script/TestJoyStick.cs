@@ -12,7 +12,6 @@ public class TestJoyStick : MonoBehaviour
     [Header("조이스틱 반경")]
     public float joystickRadius = 100f; // 배경 이미지의 절반 크기(px)
 
-    private int joystickFingerId = -1;
     private Vector2 inputVector = Vector2.zero;
 
     public Vector2 InputVector => inputVector; // 외부에서 입력값 읽기
