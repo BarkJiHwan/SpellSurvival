@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public float rotSpeed;
     Vector2 dir;
     Vector3 moveDir;
+
+    public int playerHp = 100000;
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -51,5 +53,22 @@ public class PlayerController : MonoBehaviour
                 rotSpeed * Time.deltaTime
             );
         }
+    }
+    public void TakeDamage(int dam)
+    {
+        if(playerHp >= 0)
+        {
+            Debug.Log("피 다는중...");
+            playerHp -= dam;
+        }
+        else
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Debug.Log("죽었습니다 ㅋ");
     }
 }
