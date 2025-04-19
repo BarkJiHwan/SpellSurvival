@@ -30,20 +30,20 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // 조이스틱 입력값 가져오기 (Vector2)
+        //조이스틱 입력값 가져오기 (Vector2)
         Vector2 inputDir = joystick.InputVector;
 
-        // 이동 방향 계산 (XZ 평면)
+        //이동 방향 계산 (XZ 평면)
         Vector3 moveDir = new Vector3(inputDir.x, 0f, inputDir.y);
 
-        // 대각선 이동 속도 보정
+        //대각선 이동 속도 보정
         if (moveDir.magnitude > 1f)
             moveDir.Normalize();
 
-        // 캐릭터 이동
+        //캐릭터 이동
         characterController.Move(moveDir * moveSpeed * Time.deltaTime);
 
-        // 캐릭터 회전
+        //캐릭터 회전
         if (moveDir.sqrMagnitude > 0.001f)
         {
             Quaternion targetRot = Quaternion.LookRotation(moveDir);
