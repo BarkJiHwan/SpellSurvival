@@ -15,8 +15,12 @@ public class PlayerController : MonoBehaviour
     public float rotSpeed;
     Vector2 dir;
     Vector3 moveDir;
-
     public int playerHp = 100000;
+
+    private void Awake()
+    {
+        GameManager.Instance.RegisterPlayer(this);
+    }
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -54,6 +58,13 @@ public class PlayerController : MonoBehaviour
             );
         }
     }
+    void OnDestroy()
+    {
+        // 씬 전환 시 파괴되면 등록 해제
+        if (GameManager.Instance != null)
+            GameManager.Instance.UnregisterPlayer();
+    }
+
     public void TakeDamage(int dam)
     {
         if(playerHp >= 0)

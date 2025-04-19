@@ -6,8 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private PlayerController player;
-    private int currentScore;
+    public PlayerController player;
 
     void Awake()
     {
@@ -22,7 +21,18 @@ public class GameManager : MonoBehaviour
 
         //플레이어 동적 할당 (씬 리로드 대비)
         if (player == null)
+        {
             player = FindObjectOfType<PlayerController>();
+        }
     }
-    public PlayerController GetPlayer() => player;
+    public void RegisterPlayer(PlayerController newPlayer)
+    {
+        player = newPlayer;        
+    }
+
+    // 플레이어가 파괴될 때 호출 (옵션)
+    public void UnregisterPlayer()
+    {
+        player = null;
+    }
 }

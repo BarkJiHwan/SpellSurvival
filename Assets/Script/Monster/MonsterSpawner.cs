@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public PlayerController player;
-
     float minDis = 5.0f;
     float maxDis = 20.0f;
     public int poolSize = 1000;
@@ -28,16 +26,21 @@ public class MonsterSpawner : MonoBehaviour
     {
         // 1. 풀에서 비활성화된 몬스터를 찾기
         GameObject monster = pool.Dequeue();
-     
-        // 2. 플레이어 기준 랜덤 위치 계산
+
+        if (GameManager.Instance.player != null)
+        {
+            Vector3 spawnPos = CreateAroundPlayer();
+            monster.transform.position = spawnPos;
+        }
+        monster.SetActive(true);
+    }
+
+    private Vector3 CreateAroundPlayer()
+    {
         float angle = Random.Range(0, Mathf.PI * 2);
         float distance = Random.Range(minDis, maxDis);
-        Vector3 offset = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * distance;
-        Vector3 spawnPos = player.transform.position + offset;
-
-        // 3. 몬스터 위치 이동 및 활성화
-        monster.transform.position = spawnPos;
-        monster.SetActive(true);
+        return GameManager.Instance.player.transform.position
+            + new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * distance;
     }
     public void ReturnMonster(GameObject monster)
     {

@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    public MonsterSpawner Spawner;
-
+    private PlayerController targetPlayer;
+    private MonsterSpawner spawner;
     public MonsterData monsterData;
     
     void Start()
     {
-        Spawner = MonsterSpawner.FindObjectOfType<MonsterSpawner>();
+        spawner = MonsterSpawner.FindAnyObjectByType<MonsterSpawner>();
+        CachePlayer();
     }
-
+    private void CachePlayer()
+    {
+        if (GameManager.Instance != null)
+        {
+            targetPlayer = GameManager.Instance.player;
+        }
+    }
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, Spawner.player.transform.position, monsterData.speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, monsterData.speed * Time.deltaTime);
     }
 
 
@@ -23,7 +30,7 @@ public class Monster : MonoBehaviour
     {
         if(collision.transform.tag == "Player")
         {
-            Spawner.player.TakeDamage(monsterData.damage);
+            targetPlayer.TakeDamage(monsterData.damage);
         }
     }
     public void TakeDagame(int dam)
@@ -39,6 +46,6 @@ public class Monster : MonoBehaviour
     }
     public void Die()
     {
-        Spawner.ReturnMonster(gameObject);
+        spawner.ReturnMonster(gameObject);
     }
 }
