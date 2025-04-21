@@ -6,7 +6,7 @@ public class MonsterSpawner : MonoBehaviour
 {
     float minDis = 10.0f;
     float maxDis = 20.0f; 
-    public List<MonsterData> monsterTypes;
+    public List<MonsterData> monsterTypes = new List<MonsterData>();
     private Dictionary<string, MonsterPool> monsterPools = new Dictionary<string, MonsterPool>();    
     public int poolSize = 100;
 
@@ -15,6 +15,8 @@ public class MonsterSpawner : MonoBehaviour
     public float timer;
     void Start()
     {
+        //몬스터데이터 배열을 돌면서 풀 싸이즈만큼 인스턴셰이트 시킴 << 여기서 부터 문제네
+        //여기서 처리해야 됨.
         foreach(MonsterData data in monsterTypes)
         {
             MonsterPool pool = new MonsterPool(data.monsterPrefab, poolSize, transform);

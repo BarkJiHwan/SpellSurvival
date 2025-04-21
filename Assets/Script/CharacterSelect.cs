@@ -18,7 +18,7 @@ public class CharacterSelect : MonoBehaviour
         gameStartBtn.interactable = false;
         gameStartBtn.onClick.AddListener(() => GameManager.Instance.StartGame());
 
-
+        
         for (int i = 0; i < characterDataLists.characters.Length; i++)
         {
             CharacterData data = characterDataLists.characters[i];
