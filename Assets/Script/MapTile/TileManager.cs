@@ -5,7 +5,7 @@ using UnityEngine;
 public class TileManager : MonoBehaviour
 {
     [Header("플레이어 트랜스폼")]
-    public Transform playerTr;
+    public GameObject playerTr;
     [Header("타일 프리팹")]
     public GameObject tilePrefab;
     [Header("타일 사이즈")]
@@ -29,7 +29,8 @@ public class TileManager : MonoBehaviour
 
     private void Start()
     {
-
+        //만들어진 것을 찾아서 끼움
+        playerTr = GameObject.FindGameObjectWithTag("Player");
         int half = gridSize / 2;
         for (int x = -half; x <= half; x++)
         {
@@ -57,8 +58,8 @@ public class TileManager : MonoBehaviour
     }
     private Vector2Int GetPlayerTileIndex()
     {
-        return new Vector2Int(Mathf.FloorToInt(playerTr.position.x / tileSize),
-            Mathf.FloorToInt(playerTr.position.z / tileSize));
+        return new Vector2Int(Mathf.FloorToInt(playerTr.transform.position.x / tileSize),
+            Mathf.FloorToInt(playerTr.transform.position.z / tileSize));
     }
 
     void RelocateTiles(Vector2Int playerTileIndex)
