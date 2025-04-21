@@ -1277,7 +1277,7 @@ MonoBehaviour:
   monsterTypes:
   - {fileID: 11400000, guid: caf4cfa8c93c86d4f900ba42d30d37d9, type: 2}
   - {fileID: 11400000, guid: c3723fc7f9b21bb47a787e97c01bfbdc, type: 2}
-  poolSize: 500
+  poolSize: 100
   timer: 0
 --- !u!1 &800173362
 GameObject:

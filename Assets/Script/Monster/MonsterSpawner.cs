@@ -15,6 +15,8 @@ public class MonsterSpawner : MonoBehaviour
     public float timer;
     void Start()
     {
+        //몬스터데이터 배열을 돌면서 풀 싸이즈만큼 인스턴셰이트 시킴 << 여기서 부터 문제네
+        //여기서 처리해야 됨.
         foreach(MonsterData data in monsterTypes)
         {
             MonsterPool pool = new MonsterPool(data.monsterPrefab, poolSize, transform);
