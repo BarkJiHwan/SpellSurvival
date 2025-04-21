@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9a5dea513308d4d928bd6245acdd30, type: 3}
+  m_Name: ColdWizard
+  m_EditorClassIdentifier: 
+  characterID: 0
+  characterModel: {fileID: 1953271650171834, guid: e57decfcaf940dd49a94522cd4a3de76, type: 3}
+  characterPrefab: {fileID: 1953271650171834, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
+  icon: {fileID: 0}
+  skillData: {fileID: 11400000, guid: 819f9f4864f976742a3c06a97b853744, type: 2}

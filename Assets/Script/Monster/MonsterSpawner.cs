@@ -1,38 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    float minDis = 5.0f;
-    float maxDis = 20.0f;
-    public int poolSize = 1000;
-    private Queue<GameObject> pool = new Queue<GameObject>();
-    public GameObject monsterPrefab;
+    float minDis = 10.0f;
+    float maxDis = 20.0f; 
+    public List<MonsterData> monsterTypes;
+    private Dictionary<string, MonsterPool> monsterPools = new Dictionary<string, MonsterPool>();    
+    public int poolSize = 100;
+
     WaitForSeconds seconds = new WaitForSeconds(1);
+    
     public float timer;
     void Start()
-    {        
-        for (int i = 0; i < poolSize; i++)
+    {
+        foreach(MonsterData data in monsterTypes)
         {
-            GameObject monster = Instantiate(monsterPrefab, transform);
-            monster.SetActive(false);
-            pool.Enqueue(monster);
+            MonsterPool pool = new MonsterPool(data.monsterPrefab, poolSize, transform);
+            monsterPools.Add(data.monsterName, pool);
         }
         StartCoroutine(SpawnMonsterCor());
     }
-    void SpawnMonster()
+    void SpawnMonster(string monsterType)
     {
-        // 1. 풀에서 비활성화된 몬스터를 찾기
-        GameObject monster = pool.Dequeue();
-
-        if (GameManager.Instance.player != null)
+        if(monsterPools.ContainsKey(monsterType))
         {
             Vector3 spawnPos = CreateAroundPlayer();
-            monster.transform.position = spawnPos;
+            monsterPools[monsterType].Spawn(spawnPos);
         }
-        monster.SetActive(true);
     }
 
     private Vector3 CreateAroundPlayer()
@@ -45,15 +41,32 @@ public class MonsterSpawner : MonoBehaviour
     public void ReturnMonster(GameObject monster)
     {
         monster.SetActive(false);
-        pool.Enqueue(monster);
+        Monster monsterComponent = monster.GetComponent<Monster>();
+        if(monsterComponent != null && monsterComponent.monsterData != null)
+        {
+            string monsterType = monsterComponent.monsterData.monsterName;
+            if(monsterPools.ContainsKey(monsterType))
+            {
+                monsterPools[monsterType].Reture(monster);
+            }
+        }
     }
 
     IEnumerator SpawnMonsterCor()
     {
         while (true)
         {
-            SpawnMonster();
             yield return seconds;
+            int spawnCount = Random.Range(25, 50);
+            SpawnMonsterBatch(spawnCount);            
+        }
+    }
+    private void SpawnMonsterBatch(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            string monsterType = monsterTypes[Random.Range(0, monsterTypes.Count)].monsterName;
+            SpawnMonster(monsterType);
         }
     }
 }

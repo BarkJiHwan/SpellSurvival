@@ -1,15 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    private PlayerController targetPlayer;
+    public Character targetPlayer;
     private MonsterSpawner spawner;
     public MonsterData monsterData;
+    public int hp;
     
     void Start()
     {
+        hp = monsterData.hp;
         spawner = MonsterSpawner.FindAnyObjectByType<MonsterSpawner>();
         CachePlayer();
     }
@@ -20,11 +22,24 @@ public class Monster : MonoBehaviour
             targetPlayer = GameManager.Instance.player;
         }
     }
-    void Update()
+    private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, monsterData.speed * Time.deltaTime);
-    }
+        if (!gameObject.activeSelf)
+        { return; }
 
+        Vector3 targetDir = targetPlayer.transform.position - transform.position;
+        targetDir.y = 0;
+        transform.position = Vector3.MoveTowards(transform.position,
+            targetPlayer.transform.position, monsterData.speed * Time.deltaTime);
+
+        if (targetDir != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(targetDir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation,
+                monsterData.rotationSpeed * Time.deltaTime
+            );
+        }
+    }    
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -35,9 +50,9 @@ public class Monster : MonoBehaviour
     }
     public void TakeDagame(int dam)
     {
-        if (monsterData.hp >= 0)
+        if (hp >= 0)
         {
-            monsterData.hp -= dam;
+            hp -= dam;
         }
         else
         {
@@ -46,6 +61,7 @@ public class Monster : MonoBehaviour
     }
     public void Die()
     {
+        hp = monsterData.hp;
         spawner.ReturnMonster(gameObject);
     }
 }

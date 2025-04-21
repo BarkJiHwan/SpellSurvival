@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,22 +11,22 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] private FloatingJoystick joystick; //<<모바일 연동 시 활성화하기
 
     [SerializeField] private TestJoyStick joystick;
-    private CharacterController characterController;
-    public float moveSpeed;
-    public float rotSpeed;
+    private Rigidbody playerRB;
+    public Character character;
+        
     Vector2 dir;
     Vector3 moveDir;
-    public int playerHp = 100000;
 
     private void Awake()
     {
-        GameManager.Instance.RegisterPlayer(this);
+        character = GetComponent<Character>();
+        joystick = TestJoyStick.FindObjectOfType<TestJoyStick>();        
     }
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        playerRB = GetComponent<Rigidbody>();
     }
-
+   
     void Update()
     {
         if (joystick == null)
@@ -33,53 +34,50 @@ public class PlayerController : MonoBehaviour
             Debug.LogWarning("조이스틱이 할당되지 않았습니다!");
             return;
         }
+       
+            Vector2 inputVector = joystick.InputVector;
+            Vector3 moveDir = new Vector3(inputVector.x, 0, inputVector.y).normalized;
 
-        //조이스틱 입력값 가져오기 (Vector2)
-        Vector2 inputDir = joystick.InputVector;
+            if (moveDir != Vector3.zero)
+            {
+                transform.Translate(moveDir * character.moveSpeed * Time.deltaTime, Space.World);
 
-        //이동 방향 계산 (XZ 평면)
-        Vector3 moveDir = new Vector3(inputDir.x, 0f, inputDir.y);
+                // 회전 방향 설정
+                Quaternion targetRotation = Quaternion.LookRotation(moveDir);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, character.rotSpeed * Time.deltaTime);
+            }
+        
+        ////조이스틱 입력값 가져오기 (Vector2)
+        //Vector2 inputDir = joystick.InputVector;
 
-        //대각선 이동 속도 보정
-        if (moveDir.magnitude > 1f)
-            moveDir.Normalize();
+        ////이동 방향 계산 (XZ 평면)
+        //Vector3 moveDir = new Vector3(inputDir.x, 0f, inputDir.y);
 
-        //캐릭터 이동
-        characterController.Move(moveDir * moveSpeed * Time.deltaTime);
+        ////대각선 이동 속도 보정
+        //if (moveDir.magnitude > 1f)
+        //    moveDir.Normalize();
 
-        //캐릭터 회전
-        if (moveDir.sqrMagnitude > 0.001f)
-        {
-            Quaternion targetRot = Quaternion.LookRotation(moveDir);
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation,
-                targetRot,
-                rotSpeed * Time.deltaTime
-            );
-        }
+        //float pos = inputDir.x * inputDir.y;
+        ////캐릭터 이동
+        //transform.Translate(moveDir * character.moveSpeed * Time.deltaTime);
+
+        ////캐릭터 회전
+        //if (moveDir.sqrMagnitude > 0.001f)
+        //{
+        //    Quaternion targetRot = Quaternion.LookRotation(moveDir);
+        //    transform.rotation = Quaternion.Slerp(
+        //        transform.rotation,
+        //        targetRot,
+        //        character.rotSpeed * Time.deltaTime
+        //    );
+        //}
     }
     void OnDestroy()
     {
         // 씬 전환 시 파괴되면 등록 해제
         if (GameManager.Instance != null)
+        {
             GameManager.Instance.UnregisterPlayer();
-    }
-
-    public void TakeDamage(int dam)
-    {
-        if(playerHp >= 0)
-        {
-            Debug.Log("피 다는중...");
-            playerHp -= dam;
         }
-        else
-        {
-            Die();
-        }
-    }
-
-    public void Die()
-    {
-        Debug.Log("죽었습니다 ㅋ");
-    }
+    }    
 }
