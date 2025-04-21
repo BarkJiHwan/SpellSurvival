@@ -6,7 +6,7 @@ public class MonsterSpawner : MonoBehaviour
 {
     float minDis = 10.0f;
     float maxDis = 20.0f; 
-    public List<MonsterData> monsterTypes;
+    public List<MonsterData> monsterTypes = new List<MonsterData>();
     private Dictionary<string, MonsterPool> monsterPools = new Dictionary<string, MonsterPool>();    
     public int poolSize = 100;
 
