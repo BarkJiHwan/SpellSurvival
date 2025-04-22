@@ -48,15 +48,15 @@ public class Monster : MonoBehaviour
             targetPlayer.TakeDamage(monsterData.damage);
         }
     }
-    public void TakeDagame(int dam)
-    {
+    public void TakeDamage(int dam)
+    {        
         if (hp >= 0)
         {
             hp -= dam;
-        }
-        else
-        {
-            Die();
+            if (hp <= 0)
+            {
+                Die();
+            }
         }
     }
     public void Die()

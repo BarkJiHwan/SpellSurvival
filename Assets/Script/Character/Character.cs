@@ -41,14 +41,16 @@ public class Character : MonoBehaviour
         Vector3 attackPos = transform.position;
         
         Collider[] hitColliders = Physics.OverlapSphere(attackPos, radius, LayerMask.GetMask("Monster"));
+        Debug.Log(hitColliders.Length + "히트된 대상 수");
         foreach (Collider collider in hitColliders) 
         {
             //if (collider.CompareTag("Monster"))
             //{
+            
                 Monster monster = collider.GetComponent<Monster>();
                 if (monster != null)
                 {
-                    monster.TakeDagame(damage);
+                    monster.TakeDamage(damage);
                 }
             //}
         }
