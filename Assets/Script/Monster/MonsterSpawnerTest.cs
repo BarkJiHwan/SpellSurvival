@@ -23,39 +23,31 @@ public class MonsterSpawnerTest : MonoBehaviour
     //몬스터 풀 초기화 (각 타입별 풀 생성)
     private void InitializePools()
     {
+        MonsterPoolTest pool = new MonsterPoolTest(poolSize, transform, monsterTypes);
         foreach (MonsterData data in monsterTypes)
         {
             if (!monsterPools.ContainsKey(data.monsterName))
             {
-                MonsterPoolTest pool = new MonsterPoolTest(data.monsterPrefab, poolSize, transform, monsterTypes);
                 monsterPools.Add(data.monsterName, pool);
             }
         }
     }
-
+    void SpawnMonster(string monsterType)
+    {
+        if (monsterPools.ContainsKey(monsterType))
+        {
+            Vector3 spawnPos = CreateAroundPlayer();
+            monsterPools[monsterType].Spawn(spawnPos);
+        }
+    }
     //현재 스테이지 레벨에 맞는 몬스터 활성화
     private void ActivateMonsters(int count)
     {
-        int stageLevel = GameManager.Instance.stageLevel; //현재 게임 레벨 가져오기
-        List<GameObject> monstersToSpawn = new List<GameObject>();
-
-        foreach (var entry in monsterPools)
+        for (int i = 0; i < count; i++)
         {
-            if (MonsterPoolTest.MonsterLevels.TryGetValue(entry.Key, out int monsterLevel) && monsterLevel == stageLevel)
-            {
-                for (int i = 0; i < count; i++)
-                {
-                    Vector3 spawnPos = CreateAroundPlayer();
-                    GameObject monster = entry.Value.Spawn(spawnPos);
-                    if (monster != null)
-                    {
-                        monstersToSpawn.Add(monster);
-                    }
-                }
-            }
-        }
-
-        activeMonsters = monstersToSpawn; //활성화된 몬스터 리스트 업데이트
+            string monsterType = monsterTypes[Random.Range(0, monsterTypes.Count)].monsterName;
+            SpawnMonster(monsterType);
+        }        
     }
 
     private Vector3 CreateAroundPlayer()
@@ -88,7 +80,7 @@ public class MonsterSpawnerTest : MonoBehaviour
             yield return spawnInterval;
 
             //RemovePreviousMonsters(); // 이전 몬스터 정리
-            int spawnCount = Random.Range(25, 50);
+            int spawnCount = Random.Range(5, 20);
             ActivateMonsters(spawnCount); //현재 레벨 기반 몬스터 활성화
 
             Debug.Log($"현재 스테이지 레벨: {GameManager.Instance.stageLevel} - 새로운 몬스터 활성화 완료!");

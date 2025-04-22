@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         stageLevel = 1;
+        SceneManager.LoadScene("Lobby");
     }
     public void RegisterPlayer(Character newPlayer)
     {

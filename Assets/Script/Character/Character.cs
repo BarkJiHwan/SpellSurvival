@@ -10,7 +10,7 @@ public class Character : MonoBehaviour
     public float moveSpeed;
     public float rotSpeed;
     public int damage;
-    public int playerHp = 100000;
+    public int playerHp;
     
     float cooldown = 3f;
     void Start()
@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
         moveSpeed = 5f;
         rotSpeed = moveSpeed;
         damage = 100;
-        playerHp = 100000;
+        playerHp = 100;
         GameManager.Instance.RegisterPlayer(this);
         StartCoroutine(Attackable());
     }
@@ -32,7 +32,6 @@ public class Character : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(cooldown);
-            Debug.Log("공격!");
             Attack();
         }
     }
@@ -40,20 +39,16 @@ public class Character : MonoBehaviour
     {
         float radius = 10f;
         Vector3 attackPos = transform.position;
-        
+
         Collider[] hitColliders = Physics.OverlapSphere(attackPos, radius, LayerMask.GetMask("Monster"));
         Debug.Log(hitColliders.Length + "히트된 대상 수");
-        foreach (Collider collider in hitColliders) 
+        foreach (Collider collider in hitColliders)
         {
-            //if (collider.CompareTag("Monster"))
-            //{
-            
-                Monster monster = collider.GetComponent<Monster>();
-                if (monster != null)
-                {
-                    monster.TakeDamage(damage);
-                }
-            //}
+            Monster monster = collider.GetComponent<Monster>();
+            if (monster != null)
+            {
+                monster.TakeDamage(damage);
+            }
         }
     }
     private void OnDrawGizmos()
@@ -65,17 +60,18 @@ public class Character : MonoBehaviour
     {
         if (playerHp >= 0)
         {
-            Debug.Log("피 다는중...");
             playerHp -= dam;
-        }
-        else
-        {
-            Die();
+            if (playerHp <= 0)
+            {
+                playerHp = 0;
+                Die();
+            }
         }
     }
 
     public void Die()
     {
         Debug.Log("죽었습니다 ㅋ");
+        GameManager.Instance.GameOver();
     }
 }

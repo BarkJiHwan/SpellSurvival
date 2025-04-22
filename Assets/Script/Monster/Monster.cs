@@ -69,7 +69,6 @@ public class Monster : MonoBehaviour
     }
     public void Die()
     {
-        hp = monsterData.hp;
         spawner.ReturnMonster(gameObject);
     }
 }
