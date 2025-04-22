@@ -33,10 +33,9 @@ public class MonsterPool
         }
         return null;
     }
-    public void Reture(GameObject monster)
+    public void Return(GameObject monster)
     {
         monster.SetActive(false);
         monsterObjPool.Add(monster);
     }
-
 }

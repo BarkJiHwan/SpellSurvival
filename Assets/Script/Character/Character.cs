@@ -9,7 +9,7 @@ public class Character : MonoBehaviour
 
     public float moveSpeed;
     public float rotSpeed;
-    public int damage = 5;
+    public int damage;
     public int playerHp = 100000;
     
     float cooldown = 3f;
@@ -17,6 +17,7 @@ public class Character : MonoBehaviour
     {
         moveSpeed = 5f;
         rotSpeed = moveSpeed;
+        damage = 100;
         playerHp = 100000;
         GameManager.Instance.RegisterPlayer(this);
         StartCoroutine(Attackable());

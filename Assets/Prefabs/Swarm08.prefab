@@ -140,8 +140,8 @@ GameObject:
   - component: {fileID: 3054566516119258676}
   - component: {fileID: 3309786654644649927}
   - component: {fileID: -8329599958802156467}
+  - component: {fileID: -2612455335267229689}
   - component: {fileID: -9010575377279435139}
-  - component: {fileID: 4444807209466125755}
   m_Layer: 6
   m_Name: Swarm08
   m_TagString: Untagged
@@ -202,6 +202,27 @@ MonoBehaviour:
   targetPlayer: {fileID: 0}
   monsterData: {fileID: 11400000, guid: caf4cfa8c93c86d4f900ba42d30d37d9, type: 2}
   hp: 0
+--- !u!135 &-2612455335267229689
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2391359435489877134}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!54 &-9010575377279435139
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -227,31 +248,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 126
   m_CollisionDetection: 0
---- !u!136 &4444807209466125755
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2391359435489877134}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.27680147
-  m_Height: 1.1505158
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.0752579, z: -0.13528615}
 --- !u!1 &2594355968516817363
 GameObject:
   m_ObjectHideFlags: 0

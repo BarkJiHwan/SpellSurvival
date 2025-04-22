@@ -48,7 +48,7 @@ public class MonsterSpawner : MonoBehaviour
             string monsterType = monsterComponent.monsterData.monsterName;
             if(monsterPools.ContainsKey(monsterType))
             {
-                monsterPools[monsterType].Reture(monster);
+                monsterPools[monsterType].Return(monster);
             }
         }
     }

@@ -1,19 +1,25 @@
 using System.Collections;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
     public Character targetPlayer;
-    private MonsterSpawner spawner;
+    //private MonsterSpawner spawner;
+    MonsterSpawnerTest spawner;
     public MonsterData monsterData;
     public int hp;
-    
+
     void Start()
     {
-        hp = monsterData.hp;
-        spawner = MonsterSpawner.FindAnyObjectByType<MonsterSpawner>();
+        spawner = MonsterSpawnerTest.FindAnyObjectByType<MonsterSpawnerTest>();
         CachePlayer();
+    }
+    public void SetStats(int currentHp, int currentDamage)
+    {
+        hp = currentHp;
+        monsterData.damage = currentDamage;
     }
     private void CachePlayer()
     {
@@ -25,7 +31,9 @@ public class Monster : MonoBehaviour
     private void Update()
     {
         if (!gameObject.activeSelf)
-        { return; }
+        { 
+            return; 
+        }
 
         Vector3 targetDir = targetPlayer.transform.position - transform.position;
         targetDir.y = 0;
