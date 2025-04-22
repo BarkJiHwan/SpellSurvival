@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterPool
 {
-    private List<GameObject> activePool = new List<GameObject>();
+    private List<GameObject> monsterObjPool = new List<GameObject>();
     private GameObject prefab;
     private Transform parentTransform;
 
@@ -17,16 +17,16 @@ public class MonsterPool
         {
             GameObject monster = Object.Instantiate(prefab, parentTransform);
             monster.SetActive(false);
-            activePool.Add(monster);
+            monsterObjPool.Add(monster);
         }
     }
 
     public GameObject Spawn(Vector3 position)
     {
-        if (activePool.Count > 0)
+        if (monsterObjPool.Count > 0)
         {
-            GameObject monster = activePool[activePool.Count - 1];
-            activePool.RemoveAt(activePool.Count - 1);
+            GameObject monster = monsterObjPool[monsterObjPool.Count - 1];
+            monsterObjPool.RemoveAt(monsterObjPool.Count - 1);
             monster.transform.position = position;
             monster.SetActive(true);
             return monster;
@@ -36,7 +36,7 @@ public class MonsterPool
     public void Reture(GameObject monster)
     {
         monster.SetActive(false);
-        activePool.Add(monster);
+        monsterObjPool.Add(monster);
     }
 
 }

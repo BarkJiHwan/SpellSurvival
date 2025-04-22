@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public int selectedCharacterIndex;
     public Character player;
 
+    public float timer;    
+
     void Awake()
     {
         if (Instance != null && Instance != this)

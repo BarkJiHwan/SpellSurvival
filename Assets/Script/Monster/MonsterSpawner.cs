@@ -12,7 +12,6 @@ public class MonsterSpawner : MonoBehaviour
 
     WaitForSeconds seconds = new WaitForSeconds(1);
     
-    public float timer;
     void Start()
     {
         //몬스터데이터 배열을 돌면서 풀 싸이즈만큼 인스턴셰이트 시킴 << 여기서 부터 문제네
