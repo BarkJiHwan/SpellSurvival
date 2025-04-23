@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15077d3ed5cda46468ba681c4aec89ae, type: 3}
-  m_Name: Babo
+  m_Name: Ghost_3
   m_EditorClassIdentifier: 
-  monsterPrefab: {fileID: 6753617674297473082, guid: 24a0663f813d4beb91fc0c6b1e8fef36, type: 3}
-  monsterName: Babo
+  monsterPrefab: {fileID: 8954800359469898617, guid: 8c66f3e1830357c44bae767b4d435442, type: 3}
+  monsterName: Ghost_3
   damage: 1
   hp: 1
   speed: 3

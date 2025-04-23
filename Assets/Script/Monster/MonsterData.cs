@@ -6,6 +6,7 @@ using UnityEngine;
 public class MonsterData : ScriptableObject
 {
     public GameObject monsterPrefab;
+    public int level;
     public string monsterName;
     public int damage;
     public int hp;

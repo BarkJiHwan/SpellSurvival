@@ -1274,11 +1274,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc83428ca6736248b5017a9aa920a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minDis: 10
+  maxDis: 20
   monsterTypes:
-  - {fileID: 11400000, guid: caf4cfa8c93c86d4f900ba42d30d37d9, type: 2}
+  - {fileID: 11400000, guid: 204c75df94ef0d847998e2f4bba745b9, type: 2}
+  - {fileID: 11400000, guid: d18b4b9be3e4e5f42bd69e84056a85d2, type: 2}
+  - {fileID: 11400000, guid: ca9d04cadab19434b82436ce19be43b4, type: 2}
+  - {fileID: 11400000, guid: fe7610bfd8ebe4043b2cf296f097efe0, type: 2}
+  - {fileID: 11400000, guid: 49aa7884a8f16ad45a5c3ce70700a107, type: 2}
+  - {fileID: 11400000, guid: 33512f2fa1b8ce04982d169069ec3bd7, type: 2}
+  - {fileID: 11400000, guid: de898ce84933a5146ad90fef5092bce7, type: 2}
+  - {fileID: 11400000, guid: 45bc76e54b3d3c44db5ca6017ea31015, type: 2}
+  - {fileID: 11400000, guid: c412ea3a3d905e84a9b2474fa4b30df8, type: 2}
+  - {fileID: 11400000, guid: 6aa5048373b167144973fc6593e6ccc8, type: 2}
+  - {fileID: 11400000, guid: 84a9f7701cb4d874bbbf18792639faca, type: 2}
   - {fileID: 11400000, guid: c3723fc7f9b21bb47a787e97c01bfbdc, type: 2}
+  - {fileID: 11400000, guid: caf4cfa8c93c86d4f900ba42d30d37d9, type: 2}
   poolSize: 100
-  timer: 0
 --- !u!1 &800173362
 GameObject:
   m_ObjectHideFlags: 0
@@ -2194,6 +2206,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedCharacterIndex: -1
   player: {fileID: 1861788717}
+  timer: 0
+  stageLevel: 1
+  isStageLevelUp: 0
+  isGameStert: 0
 --- !u!1 &1216990073
 GameObject:
   m_ObjectHideFlags: 0

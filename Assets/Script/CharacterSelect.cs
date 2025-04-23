@@ -32,7 +32,8 @@ public class CharacterSelect : MonoBehaviour
     public void CharacterSelected(int index)
     {
         GameManager.Instance.selectedCharacterIndex = index;
-        GameManager.Instance.StartGame();
+        gameStartBtn.interactable = true;
+        //GameManager.Instance.StartGame();
     }
     void Update()
     {

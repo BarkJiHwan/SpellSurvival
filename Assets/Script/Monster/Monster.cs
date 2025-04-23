@@ -1,20 +1,20 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
     public Character targetPlayer;
-    private MonsterSpawner spawner;
     public MonsterData monsterData;
-    public int hp;
-    
+    private MonsterSpawner spawner; //스폰 위치(부모)
+    [Header("레벨당 바뀌는 값 보기 위한 값")]
+    [SerializeField]private int hp;
+
     void Start()
     {
-        hp = monsterData.hp;
-        spawner = MonsterSpawner.FindAnyObjectByType<MonsterSpawner>();
+        hp = monsterData.hp; //레벨당 바뀌는 값 보기 편하도록...
+        spawner = transform.parent.GetComponent<MonsterSpawner>();
         CachePlayer();
-    }
+    }    
     private void CachePlayer()
     {
         if (GameManager.Instance != null)
@@ -25,7 +25,9 @@ public class Monster : MonoBehaviour
     private void Update()
     {
         if (!gameObject.activeSelf)
-        { return; }
+        { 
+            return; 
+        }
 
         Vector3 targetDir = targetPlayer.transform.position - transform.position;
         targetDir.y = 0;
@@ -48,15 +50,15 @@ public class Monster : MonoBehaviour
             targetPlayer.TakeDamage(monsterData.damage);
         }
     }
-    public void TakeDagame(int dam)
-    {
+    public void TakeDamage(int dam)
+    {        
         if (hp >= 0)
         {
             hp -= dam;
-        }
-        else
-        {
-            Die();
+            if (hp <= 0)
+            {
+                Die();
+            }
         }
     }
     public void Die()

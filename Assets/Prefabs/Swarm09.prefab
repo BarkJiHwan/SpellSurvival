@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5112656277915315361}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WingLeft02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4384782548669224304}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5291899305235292261}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tail02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5091938556595916842}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WingRight03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6111010084723575295}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WingLeft01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,8 +171,9 @@ GameObject:
   - component: {fileID: 2240259419076222087}
   - component: {fileID: 1773777715135941878}
   - component: {fileID: -3981702117604981606}
+  - component: {fileID: -312346097285372383}
   - component: {fileID: -2662925689351097520}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Swarm09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,8 +231,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPlayer: {fileID: 0}
-  monsterData: {fileID: 0}
+  monsterData: {fileID: 11400000, guid: d18b4b9be3e4e5f42bd69e84056a85d2, type: 2}
   hp: 0
+--- !u!135 &-312346097285372383
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467277096911013437}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!54 &-2662925689351097520
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -257,7 +279,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &2043936995899903168
 GameObject:
@@ -268,7 +290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5338221063222036913}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WingLeft03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8182737161859315133}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tail01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3186238430961396836}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,7 +386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1772596260985921435}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +417,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8783781878632426941}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +449,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4915385959205285143}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WingRight01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,7 +482,7 @@ GameObject:
   m_Component:
   - component: {fileID: 124875434599176647}
   - component: {fileID: 6714988067150373383}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Swarm09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,7 +578,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5317208126455623069}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WingRight02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
