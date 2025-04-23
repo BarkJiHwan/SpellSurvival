@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterPrefab: {fileID: 1467277096911013437, guid: 586a8fad78c64d758ef4b7e17ea63960, type: 3}
   monsterName: Bug
-  damage: 1
+  damage: 6
   hp: 1
-  speed: 1
-  rotationSpeed: 1
+  speed: 4
+  rotationSpeed: 3

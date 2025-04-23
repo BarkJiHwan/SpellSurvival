@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
         if (isGameStert)
         {
             timer += Time.deltaTime;
-            if (timer >= 60 && isStageLevelUp == false)
+            if (timer >= 2 && isStageLevelUp == false)
             {
                 isStageLevelUp = true;
             }
@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         stageLevel = 1;
+        isGameStert = false;
         SceneManager.LoadScene("Lobby");
     }
     public void RegisterPlayer(Character newPlayer)
