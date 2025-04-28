@@ -26,10 +26,7 @@ public class MonsterPool
             availableLevels.Add(i);
         }
         ShuffleList(availableLevels); //난이도 리스트 셔플
-        foreach (var availableLevel in availableLevels)
-        {
-            Debug.Log(availableLevel + "레벨(난이도 잘~ 돈다)");
-        }
+        
         //몬스터 타입에 난이도 할당
         for (int i = 0; i < monsterTypes.Count; i++)
         {
