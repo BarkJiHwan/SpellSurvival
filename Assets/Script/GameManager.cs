@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public bool isGameStert = false;
     void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;

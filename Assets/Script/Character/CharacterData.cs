@@ -8,5 +8,5 @@ public class CharacterData : ScriptableObject
     public GameObject characterModel;
     public GameObject characterPrefab;
     public Sprite icon;
-    public SkillData skillData;
+    //public SkillData skillData;
 }
