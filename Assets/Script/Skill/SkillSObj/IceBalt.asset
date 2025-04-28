@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c50f56bba488b9c47ab860432849718a, type: 3}
-  m_Name: FireBalt
+  m_Name: IceBalt
   m_EditorClassIdentifier: 
-  skillName: FireBalt
-  description: FireBalt
-  cooldown: 3
+  skillName: IceBalt
+  description: IceBalt
+  cooldown: 1
   lifeTime: 10
-  baseDamage: 100
-  speed: 10
-  behaviorType: 2
-  skillPrefab: {fileID: 2133001954128331680, guid: 4d32eceaa14a05743897d2dd0074e306, type: 3}
-  piercingCount: 3
-  chainCount: 3
-  chainRadius: 5
-  explosionRadius: 3
-  explosionDelay: 0.5
-  returnTime: 1.5
-  trackingRadius: 10
-  maxHits: 3
+  baseDamage: 30
+  speed: 50
+  behaviorType: 4
+  skillPrefab: {fileID: 8875659945432479664, guid: 65f9d5590d8f0fe42a5f5b2bbfae74d9, type: 3}
+  piercingCount: 0
+  chainCount: 0
+  chainRadius: 0
+  explosionRadius: 10
+  explosionDelay: 0
+  returnTime: 0
+  trackingRadius: 0
+  maxHits: 0

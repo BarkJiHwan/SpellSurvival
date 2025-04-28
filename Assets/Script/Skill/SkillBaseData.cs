@@ -15,6 +15,4 @@ public class SkillBaseData : ScriptableObject
     public float lifeTime;
     public int baseDamage;
     public float speed;
-
-    public SkillType skillType;
 }

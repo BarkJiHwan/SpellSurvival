@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
-    public static SkillManager Instance;
+    private static SkillManager instance;
 
     private Dictionary<string, ActiveSkillData> activeSkillDict = new Dictionary<string, ActiveSkillData>();
     private Dictionary<string, PassiveSkillData> passiveSkillDict = new Dictionary<string, PassiveSkillData>();
     private Dictionary<string, int> skillLevels = new Dictionary<string, int>();
 
-    [SerializeField]
-    private List<SkillBaseData> defaultSkills;
+    public List<SkillBaseData> defaultSkills;
+
+    public static SkillManager Instance { get; private set; }
+
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
+        if (Instance != null)
+        {
             Destroy(gameObject);
+            return;
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
 
 
         RegisterDefaultSkills();

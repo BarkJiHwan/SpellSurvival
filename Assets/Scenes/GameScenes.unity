@@ -3837,7 +3837,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f7600a5091c8b044bd02357316e42ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicSkillData: {fileID: 11400000, guid: 181140110d5694449859b6836fe79b62, type: 2}
+  defaultSkills:
+  - {fileID: 11400000, guid: 181140110d5694449859b6836fe79b62, type: 2}
+  - {fileID: 11400000, guid: 6bf0c9e7044a55c43bf5b537e5b59573, type: 2}
 --- !u!4 &1877605276
 Transform:
   m_ObjectHideFlags: 0
