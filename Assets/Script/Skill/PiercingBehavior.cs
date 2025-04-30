@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class PiercingBehavior : ISkillBehavior
 {
+    private bool initialized = false;
+    private Vector3 moveDirection;
+    private Transform target;
+
     private int _remainingPierces;
 
     public int RemainingPierces
@@ -18,7 +22,6 @@ public class PiercingBehavior : ISkillBehavior
                 _remainingPierces = value;
         }
     }
-    private float radius = 10f;
     public PiercingBehavior(int piercingCount)
     {
         RemainingPierces = piercingCount;  // 동적으로 관통 횟수 설정
@@ -27,16 +30,20 @@ public class PiercingBehavior : ISkillBehavior
     public void UpdateBehavior(Skill skill)
     {
         // 적을 찾는 방향으로 이동
-        Transform target = SkillBehaviorFactory.FindClosestEnemy(skill.transform.position, radius);
-        if (target != null)
+        if (!initialized)
         {
-            Vector3 direction = (target.position - skill.transform.position).normalized;
-            skill.transform.Translate(direction * skill.speed * Time.deltaTime);
+            initialized = true;
+            target = SkillBehaviorFactory.FindClosestEnemy(skill.transform.position, 100);
+            if (target != null)
+            {
+                moveDirection = (target.position - skill.transform.position).normalized;
+            }
+            else
+            {
+                moveDirection = Vector3.forward;
+            }
         }
-        else
-        {
-            skill.transform.Translate(Vector3.forward * skill.speed * Time.deltaTime);
-        }
+        skill.transform.Translate(moveDirection * skill.speed * Time.deltaTime);
     }
 
     public void OnHit(Skill skill, Collision collision)
@@ -44,10 +51,10 @@ public class PiercingBehavior : ISkillBehavior
         if (collision.transform.CompareTag("Monster"))
         {
             RemainingPierces--;
-
             // 관통 카운트 소진 시 리턴
             if (RemainingPierces <= 0)
             {
+                target = null;
                 skill.ReturnToPool();
             }
         }

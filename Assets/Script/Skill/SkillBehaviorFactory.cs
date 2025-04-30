@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillBehaviorFactory : MonoBehaviour
+public class SkillBehaviorFactory
 {
     public static ISkillBehavior CreateBehavior(SkillBehaviorType type, ActiveSkillData activeData)
     {
@@ -24,12 +24,12 @@ public class SkillBehaviorFactory : MonoBehaviour
                 return new StraightBehavior();
         }
     }
-    public static Transform FindClosestEnemy(Vector3 position, float radius = 10f)
+    public static Transform FindClosestEnemy(Vector3 position, float radius)
     {
         Collider[] hits = Physics.OverlapSphere(position, radius, LayerMask.GetMask("Monster"));
 
-        Transform closest = null;
-        float minDist = Mathf.Infinity;
+        Transform closestMonster = null;
+        float minDist = radius;
 
         foreach (var hit in hits)
         {
@@ -37,10 +37,9 @@ public class SkillBehaviorFactory : MonoBehaviour
             if (dist < minDist)
             {
                 minDist = dist;
-                closest = hit.transform;
+                closestMonster = hit.transform;
             }
         }
-
-        return closest;
+        return closestMonster;
     }
 }

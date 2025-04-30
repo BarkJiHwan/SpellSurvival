@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa48c583ded445b4ab5b9478dcf3c351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effect: {fileID: 162584487599433031, guid: 6014d641d4d8d4345bba9dc1410c9850, type: 3}
   skillData: {fileID: 0}
   damage: 100
   speed: 10

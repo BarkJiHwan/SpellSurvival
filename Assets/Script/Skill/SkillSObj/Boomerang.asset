@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c50f56bba488b9c47ab860432849718a, type: 3}
+  m_Name: Boomerang
+  m_EditorClassIdentifier: 
+  skillName: Boomerang
+  description: BoomerangSkill
+  cooldown: 2
+  lifeTime: 10
+  baseDamage: 1000
+  speed: 15
+  behaviorType: 3
+  skillPrefab: {fileID: 5455354946097487037, guid: ce7e69c109a65af4ebe998425aa306f1, type: 3}
+  piercingCount: 0
+  chainCount: 0
+  chainRadius: 0
+  explosionRadius: 0
+  explosionDelay: 0
+  returnTime: 5
+  trackingRadius: 0
+  maxHits: 0

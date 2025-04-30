@@ -20,7 +20,7 @@ public class Character : MonoBehaviour
         damage = 100;
         playerHp = 100;
         GameManager.Instance.RegisterPlayer(this);
-        StartCoroutine(Attackable());
+        //StartCoroutine(Attackable());
     }
 
     void Update()

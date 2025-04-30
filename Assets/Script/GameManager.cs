@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
         if (isGameStert)
         {
             timer += Time.deltaTime;
-            if (timer >= 2 && isStageLevelUp == false)
+            if (timer >= 120 && isStageLevelUp == false)
             {
                 isStageLevelUp = true;
             }

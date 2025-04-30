@@ -8,4 +8,5 @@ public class StraightBehavior : ISkillBehavior
     {
         skill.transform.Translate(Vector3.forward * skill.speed * Time.deltaTime);
     }
+
 }

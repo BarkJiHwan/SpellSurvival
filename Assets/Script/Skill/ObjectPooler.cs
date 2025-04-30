@@ -27,13 +27,14 @@ public class ObjectPooler : MonoBehaviour
 
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
+        //풀 만들기
         foreach (var pool in pools)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
 
             for (int i = 0; i < pool.size; i++)
-            {
-                GameObject obj = Instantiate(pool.prefab);
+            {                
+                GameObject obj = Instantiate(pool.prefab);                
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
@@ -110,10 +111,9 @@ public class ObjectPooler : MonoBehaviour
         }
 
         GameObject objectToSpawn = poolQueue.Dequeue();
-        objectToSpawn.SetActive(true);
+        objectToSpawn.SetActive(true);        
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
-
         return objectToSpawn;
     }
 
