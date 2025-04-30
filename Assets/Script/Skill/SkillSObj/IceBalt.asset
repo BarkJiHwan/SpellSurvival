@@ -15,9 +15,9 @@ MonoBehaviour:
   skillName: IceBalt
   description: IceBalt
   cooldown: 1
-  lifeTime: 10
-  baseDamage: 30
-  speed: 50
+  lifeTime: 5
+  baseDamage: 100
+  speed: 10
   behaviorType: 4
   skillPrefab: {fileID: 8875659945432479664, guid: 65f9d5590d8f0fe42a5f5b2bbfae74d9, type: 3}
   piercingCount: 0

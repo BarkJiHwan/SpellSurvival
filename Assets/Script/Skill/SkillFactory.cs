@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class SkillFactory
 {
@@ -45,8 +44,8 @@ public class SkillFactory
         ISkillBehavior behavior = SkillBehaviorFactory.CreateBehavior(activeData.behaviorType, activeData);
 
         // 6. Skill √ ±‚»≠
+        activeData.ApplyBehaviorOptions(behavior);
         skillComponent.Initialize(activeData);
         skillComponent.SetBehavior(behavior);
-        activeData.ApplyBehaviorOptions(behavior);
     }
 }

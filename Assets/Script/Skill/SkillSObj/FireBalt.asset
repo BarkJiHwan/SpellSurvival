@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: FireBalt
   description: FireBalt
-  cooldown: 3
+  cooldown: 2
   lifeTime: 10
   baseDamage: 100
   speed: 10

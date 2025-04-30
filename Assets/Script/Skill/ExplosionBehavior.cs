@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class ExplosionBehavior : ISkillBehavior
 {
-    private bool isExploding = false;
+    private bool initialized = false;
+    private Vector3 moveDirection;
+    private Transform target;
+
     private float _explosionRadius;  // 폭발 범위 (필드)
     private float _explosionDelay;   // 폭발 지연 시간 (필드)
+    private bool isExploding = false;
     private float timer;
     public float ExplosionRadius
     {
@@ -35,11 +39,24 @@ public class ExplosionBehavior : ISkillBehavior
             {
                 Explode(skill);
             }
+            return;
         }
-        else
+        if (!initialized)
         {
-            skill.transform.Translate(Vector3.forward * skill.speed * Time.deltaTime);
+            target = SkillBehaviorFactory.FindClosestEnemy(skill.transform.position, 100);
+            if (target != null)
+            {
+                // 타겟이 있으면 타겟 방향
+                moveDirection = (target.position - skill.transform.position).normalized;
+            }
+            else
+            {
+                // 타겟이 없으면 발사되는 방향
+                moveDirection = Vector3.forward;
+            }
+            initialized = true;
         }
+        skill.transform.Translate(moveDirection * skill.speed * Time.deltaTime);
     }
 
     public void OnHit(Skill skill, Collision collision)
@@ -47,7 +64,7 @@ public class ExplosionBehavior : ISkillBehavior
         if (!isExploding)
         {
             isExploding = true;
-            timer = 0f;
+            initialized = false;
             skill.speed = 0f; // 충돌 시 이동 멈춤
         }
     }
@@ -64,7 +81,8 @@ public class ExplosionBehavior : ISkillBehavior
                 monster.TakeDamage(skill.damage);
             }
         }
-
+        timer = 0f;
+        target = null;
         skill.ReturnToPool();
     }    
 }

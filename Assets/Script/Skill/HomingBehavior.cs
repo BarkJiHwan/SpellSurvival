@@ -19,53 +19,45 @@ public class HomingBehavior : ISkillBehavior
         get { return _maxHits; }
         set { _maxHits = Mathf.Max(0, value); }  // 음수 값 방지
     }
-    private int currentHits = 0;
+    public int currentHits = 0;
 
     public HomingBehavior(float trackingRadius, int maxHits)
     {
         this.TrackingRadius = trackingRadius;  // 동적으로 추적 범위 설정
         this.MaxHits = maxHits;  // 동적으로 최대 타겟 횟수 설정
-        target = FindClosestEnemy();
     }
 
     public void UpdateBehavior(Skill skill)
     {
-        if (target == null)
+        if (target == null || !target.gameObject.activeInHierarchy)
         {
-            skill.ReturnToPool();
-            return;
+            target = SkillBehaviorFactory.FindClosestEnemy(skill.transform.position, TrackingRadius);
+            if (target == null)
+            {
+                skill.speed = 0;
+                return;
+            }
+            else
+            {
+                skill.speed = skill.skillData.speed;
+            }
         }
-
         Vector3 direction = (target.position - skill.transform.position).normalized;
         skill.transform.Translate(direction * skill.speed * Time.deltaTime);
-
-        if (Vector3.Distance(skill.transform.position, target.position) < 0.5f)
+    }
+    public void OnHit(Skill skill, Collision collision)
+    {
+        if (collision.transform.CompareTag("Monster"))
         {
             currentHits++;
             if (currentHits >= MaxHits)
             {
                 skill.ReturnToPool();
             }
-        }
-    }
-
-    private Transform FindClosestEnemy()
-    {
-        Collider[] hits = Physics.OverlapSphere(Vector3.zero, TrackingRadius, LayerMask.GetMask("Monster"));
-
-        Transform closest = null;
-        float minDist = Mathf.Infinity;
-
-        foreach (var hit in hits)
-        {
-            float dist = Vector3.Distance(Vector3.zero, hit.transform.position);
-            if (dist < minDist)
+            else
             {
-                minDist = dist;
-                closest = hit.transform;
+                target = null;
             }
         }
-
-        return closest;
-    }
+    }    
 }

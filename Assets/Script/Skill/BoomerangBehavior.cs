@@ -20,7 +20,7 @@ public class BoomerangBehavior : ISkillBehavior
     public void UpdateBehavior(Skill skill)
     {
         elapsed += Time.deltaTime;
-        if (elapsed < ReturnTime)
+        if (elapsed < (ReturnTime / 2))
         {
             skill.transform.Translate(Vector3.forward * skill.speed * Time.deltaTime);
         }

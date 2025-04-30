@@ -73,8 +73,7 @@ public class SkillController : MonoBehaviour
         }
 
         // 스킬 위치 및 회전 수정
-        SkillFactory.CreateSkill(skillName, transform.position, Quaternion.identity);
-
+        SkillFactory.CreateSkill(skillName, transform.position, transform.rotation);
         // 쿨다운을 갱신
         UpdateSkillCooldown(skillName, skillData.cooldown);
     }
