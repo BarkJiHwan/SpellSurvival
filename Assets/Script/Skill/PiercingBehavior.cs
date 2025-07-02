@@ -43,7 +43,7 @@ public class PiercingBehavior : ISkillBehavior
                 moveDirection = Vector3.forward;
             }
         }
-        skill.transform.Translate(moveDirection * skill.speed * Time.deltaTime);
+        skill.transform.Translate(moveDirection * skill.Speed * Time.deltaTime);
     }
 
     public void OnHit(Skill skill, Collision collision)

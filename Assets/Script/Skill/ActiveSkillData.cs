@@ -9,7 +9,7 @@ public enum SkillBehaviorType
     Homing,       // 타겟 유도
     Boomerang,    // 부메랑
     Explosion,    // 폭발형 (이동 없음)
-    Chain,        // 체인 공격 (추후 확장용)
+    Chain,        // 체인 공격 (확장용)
     Piercing,     // 관통형 (적 여러명 통과)
 }
 [CreateAssetMenu(fileName = "NewActiveSkill", menuName = "Skill/ActiveSkill")]

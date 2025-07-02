@@ -22,11 +22,11 @@ public class BoomerangBehavior : ISkillBehavior
         elapsed += Time.deltaTime;
         if (elapsed < (ReturnTime / 2))
         {
-            skill.transform.Translate(Vector3.forward * skill.speed * Time.deltaTime);
+            skill.transform.Translate(Vector3.forward * skill.Speed * Time.deltaTime);
         }
         else
         {
-            skill.transform.Translate(-Vector3.forward * skill.speed * Time.deltaTime);
+            skill.transform.Translate(-Vector3.forward * skill.Speed * Time.deltaTime);
         }
     }
 }

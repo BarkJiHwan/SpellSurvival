@@ -6,7 +6,7 @@ public class StraightBehavior : ISkillBehavior
 {
     public void UpdateBehavior(Skill skill)
     {
-        skill.transform.Translate(Vector3.forward * skill.speed * Time.deltaTime);
+        skill.transform.Translate(Vector3.forward * skill.Speed * Time.deltaTime);
     }
 
 }

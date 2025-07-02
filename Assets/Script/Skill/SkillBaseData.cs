@@ -10,7 +10,7 @@ public class SkillBaseData : ScriptableObject
 {
     public string skillName;
     public string description;
-
+    public SkillType skillType;
     public float cooldown;
     public float lifeTime;
     public int baseDamage;

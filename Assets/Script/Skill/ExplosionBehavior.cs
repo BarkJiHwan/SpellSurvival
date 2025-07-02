@@ -16,7 +16,7 @@ public class ExplosionBehavior : ISkillBehavior
     public float ExplosionRadius
     {
         get { return _explosionRadius; }
-        set { _explosionRadius = Mathf.Max(0, value); }  // 폭발 범위는 음수일 수 없으므로, 음수 방지
+        set { _explosionRadius = Mathf.Max(0, value); }  // 음수 값 방지
     }
 
     public float ExplosionDelay
@@ -56,7 +56,7 @@ public class ExplosionBehavior : ISkillBehavior
             }
             initialized = true;
         }
-        skill.transform.Translate(moveDirection * skill.speed * Time.deltaTime);
+        skill.transform.Translate(moveDirection * skill.Speed * Time.deltaTime);
     }
 
     public void OnHit(Skill skill, Collision collision)
@@ -65,7 +65,7 @@ public class ExplosionBehavior : ISkillBehavior
         {
             isExploding = true;
             initialized = false;
-            skill.speed = 0f; // 충돌 시 이동 멈춤
+            skill.Speed = 0f; // 충돌 시 이동 멈춤
         }
     }
 
@@ -78,7 +78,7 @@ public class ExplosionBehavior : ISkillBehavior
             var monster = hit.GetComponent<Monster>();
             if (monster != null)
             {
-                monster.TakeDamage(skill.damage);
+                monster.TakeDamage(skill.Damage);
             }
         }
         timer = 0f;

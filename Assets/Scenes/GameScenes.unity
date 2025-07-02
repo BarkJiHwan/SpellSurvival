@@ -2205,7 +2205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedCharacterIndex: 0
-  player: {fileID: 1861788717}
+  player: {fileID: 0}
   timer: 0
   stageLevel: 1
   isStageLevelUp: 0

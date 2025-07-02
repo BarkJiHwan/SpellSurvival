@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: IceBalt
   description: IceBalt
+  skillType: 0
   cooldown: 1
   lifeTime: 5
   baseDamage: 100
@@ -23,7 +24,7 @@ MonoBehaviour:
   piercingCount: 0
   chainCount: 0
   chainRadius: 0
-  explosionRadius: 10
+  explosionRadius: 2
   explosionDelay: 0
   returnTime: 0
   trackingRadius: 0

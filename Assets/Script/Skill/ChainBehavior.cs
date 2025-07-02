@@ -53,7 +53,7 @@ public class ChainBehavior : ISkillBehavior
             }
             initialized = true;
         }
-        skill.transform.Translate(moveDirection * skill.speed * Time.deltaTime);
+        skill.transform.Translate(moveDirection * skill.Speed * Time.deltaTime);
     }
     public void OnHit(Skill skill, Collision collision)
     {
@@ -69,7 +69,7 @@ public class ChainBehavior : ISkillBehavior
             Monster monster = target.GetComponent<Monster>();
             if (monster != null)
             {
-                monster.TakeDamage(skill.damage);
+                monster.TakeDamage(skill.Damage);
             }
         }
         DrawChainVisual(skill.transform.position, chainTargets);

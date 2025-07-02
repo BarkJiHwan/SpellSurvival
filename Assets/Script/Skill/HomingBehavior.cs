@@ -17,7 +17,7 @@ public class HomingBehavior : ISkillBehavior
     public int MaxHits
     {
         get { return _maxHits; }
-        set { _maxHits = Mathf.Max(0, value); }  // 음수 값 방지
+        set { _maxHits = Mathf.Max(0, value); }
     }
     public int currentHits = 0;
 
@@ -34,16 +34,16 @@ public class HomingBehavior : ISkillBehavior
             target = SkillBehaviorFactory.FindClosestEnemy(skill.transform.position, TrackingRadius);
             if (target == null)
             {
-                skill.speed = 0;
+                skill.Speed = 0;
                 return;
             }
             else
             {
-                skill.speed = skill.skillData.speed;
+                skill.Speed = skill._skillData.speed;
             }
         }
         Vector3 direction = (target.position - skill.transform.position).normalized;
-        skill.transform.Translate(direction * skill.speed * Time.deltaTime);
+        skill.transform.Translate(direction * skill.Speed * Time.deltaTime);
     }
     public void OnHit(Skill skill, Collision collision)
     {
