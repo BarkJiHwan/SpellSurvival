@@ -21,14 +21,21 @@ public class Monster : MonoBehaviour
         {
             targetPlayer = GameManager.Instance.player;
         }
+        else
+        {
+            targetPlayer = FindObjectOfType<Character>();
+        }
     }
     private void Update()
     {
         if (!gameObject.activeSelf)
-        { 
-            return; 
-        }
+            return;
+        
+        MoveToTarget();
 
+    }
+    public void MoveToTarget()
+    {
         Vector3 targetDir = targetPlayer.transform.position - transform.position;
         targetDir.y = 0;
         transform.position = Vector3.MoveTowards(transform.position,
@@ -41,8 +48,7 @@ public class Monster : MonoBehaviour
                 monsterData.rotationSpeed * Time.deltaTime
             );
         }
-    }    
-
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.tag == "Player")
